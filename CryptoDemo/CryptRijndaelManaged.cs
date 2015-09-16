@@ -30,6 +30,8 @@ namespace CryptoDemo {
     }
 
     protected static byte[] EncryptStringToBytes(string plainText) {
+      RijndaelManaged rm = new RijndaelManaged();
+      encryptor = rm.CreateEncryptor(key, vector);
       byte[] encrypted;
 
       // Create the streams used for encryption. 
@@ -49,6 +51,8 @@ namespace CryptoDemo {
     }
 
     protected static string DecryptStringFromBytes(byte[] cipherText) {
+      RijndaelManaged rm = new RijndaelManaged();
+      decryptor = rm.CreateDecryptor(key, vector);
       // Declare the string used to hold 
       // the decrypted text. 
       string plaintext = null;

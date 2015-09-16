@@ -15,9 +15,6 @@ namespace CryptoDemo {
     private static ICryptoTransform encryptor, decryptor;
 
     static CryptAESManaged() {
-      AesManaged aes = new AesManaged();
-      encryptor = aes.CreateEncryptor(key, vector);
-      decryptor = aes.CreateDecryptor(key, vector);
     }
 
     public static string Encrypt(string unencrypted) {
@@ -29,6 +26,9 @@ namespace CryptoDemo {
     }
 
     protected static byte[] EncryptStringToBytes(string plainText) {
+      AesManaged aes = new AesManaged();
+      encryptor = aes.CreateEncryptor(key, vector);
+
       byte[] encrypted;
 
       // Create the streams used for encryption. 
@@ -48,6 +48,9 @@ namespace CryptoDemo {
     }
 
     protected static string DecryptStringFromBytes(byte[] cipherText) {
+      AesManaged aes = new AesManaged();
+      decryptor = aes.CreateDecryptor(key, vector);
+
       // Declare the string used to hold 
       // the decrypted text. 
       string plaintext = null;
